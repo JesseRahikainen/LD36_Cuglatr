@@ -1752,7 +1752,7 @@ void securityScene( void )
 		startPlayDraw( ); {
 			pos = drawString( descriptionSafeArea.Left, descriptionSafeArea.Top, descriptionSafeArea,
 					"Going deeper and deeper you eventually come to what looks like an important door. As "
-					"soon as you touch it a turret comes out of the cieling and starts tracking you. It's "
+					"soon as you touch it a turret comes out of the ceiling and starts tracking you. It's "
 					"not fast enough though and you are able to get behind some cover before it starts "
 					"shooting.\n\n"
 					"What do you do?",
@@ -1850,7 +1850,7 @@ void entranceFightFailureScene( void )
 			pos = drawString( descriptionSafeArea.Left, descriptionSafeArea.Top, descriptionSafeArea,
 					"This thing must be invincible. No matter what you throw at it "
 					"everything seems to just glance off it's armor. Your skin isn't "
-					"nearly as resilant to it's guns.",
+					"nearly as resilient to it's guns.",
 					FG_GREY );
 			standardWoundText( descriptionSafeArea.Left, pos.Y + 2, descriptionSafeArea, "Physical", "were shot by a robot" );
 			standardSceneChoiceDraw( sbChoices, sb_count( sbChoices ) );
@@ -1911,7 +1911,8 @@ void entranceHackScene( void )
 					"You run up to the guard robot before it can react and plug a %s into it and "
 					"start hitting random buttons on it. The guard powers down giving you access "
 					"to the compound.",
-					FG_GREY );
+					FG_GREY,
+					gearData[G_HACKING_DEVICE].name );
 			standardGearLossText( descriptionSafeArea.Left, pos.Y + 2, descriptionSafeArea, G_HACKING_DEVICE );
 			standardSceneChoiceDraw( sbChoices, sb_count( sbChoices ) );
 		} endDraw( );
@@ -2121,7 +2122,8 @@ void powerRobotScholarScene( void )
 					"in the robot she stops. She's puzzled for a short while before calling the robot "
 					"a stupid piece of junk and kicking it. A few seconds later the robot begins to "
 					"boot up.",
-					FG_GREY );
+					FG_GREY,
+					companionsData[CMP_SCHOLAR].name );
 			standardSceneChoiceDraw( sbChoices, sb_count( sbChoices ) );
 		} endDraw( );
 
@@ -2735,7 +2737,7 @@ void riverScene( void )
 		startPlayDraw( ); {
 			pos = drawString( descriptionSafeArea.Left, descriptionSafeArea.Top, descriptionSafeArea,
 					"Following the path you see the bridge you were supposed to cross is no longer "
-					"there.\n\n"
+					"there. It looks like the river flooded recently and washed it away.\n\n"
 					"What do you do?",
 					FG_GREY );
 
@@ -2790,6 +2792,8 @@ void travelerTradeSuccessScene( void )
 	}
 
 	sb_free( sbChoices );
+
+	checkTooMuchGear( nextScene );
 }
 
 void travelerTradeCostlySuccessScene( void )
@@ -2907,7 +2911,7 @@ void travelerScene( void )
 	while( nextScene == NULL ) {
 		startPlayDraw( ); {
 			pos = drawString( descriptionSafeArea.Left, descriptionSafeArea.Top, descriptionSafeArea,
-					"At a fork in the road a traveller starts heading the same way as you. The both of "
+					"At a fork in the road a traveler starts heading the same way as you. The both of "
 					"you talk for a while. You and her seem to be headed in the same direction.\n\n"
 					"What do you do?",
 					FG_GREY );
@@ -3699,7 +3703,7 @@ void cacheScene( void )
 		startPlayDraw( ); {
 			pos = drawString( descriptionSafeArea.Left, descriptionSafeArea.Top, descriptionSafeArea,
 					"While walking you go off the trail for a bit of rest. Setting your pack down "
-					"you're suprised to hear that whatever you put it on sounds hollow. Beneath some "
+					"you're surprised to hear that whatever you put it on sounds hollow. Beneath some "
 					"leaves you find a large metal box with a lock on it.\n\n"
 					"What do you do?",
 					FG_GREY );
@@ -3879,7 +3883,7 @@ void sirenApproachScene( void )
 	while( nextScene == NULL ) {
 		startPlayDraw( ); {
 			pos = drawString( descriptionSafeArea.Left, descriptionSafeArea.Top, descriptionSafeArea,
-					"You reach a clearing in the woods where a clear lake sits. A short way off shore "
+					"You reach a clearing in the woods where a peaceful lake sits. A short way off shore "
 					"a beautiful %s with long, nearly white hair is bathing and singing. %s turns "
 					"and look at you as you approach, waving at you. After a short while %s swims over "
 					"and introduces %s as Leucosia.\n\n"
@@ -3943,7 +3947,7 @@ void sirenSneakSuccessScene( void )
 	while( nextScene == NULL ) {
 		startPlayDraw( ); {
 			pos = drawString( descriptionSafeArea.Left, descriptionSafeArea.Top, descriptionSafeArea,
-					"You reach a clearing in the woods where a clear lake sits. A short way off shore "
+					"You reach a clearing in the woods where a still lake sits. A short way off shore "
 					"a beautiful %s with long, nearly white hair is bathing and singing. Near your "
 					"feet appears to be their belongings.\n\n"
 					"What do you do?",
@@ -6162,7 +6166,7 @@ void historyScene( void )
 						currPos = drawString( currPos.X, currPos.Y, safeWriteArea,
 							"A container containing an ancient biological weapon is shattered "
 							"near the edge of town. You spend a few weeks with an extremely high fever. "
-							"Afterwards your thoughts are cloudier than they had been before.",
+							"Afterward your thoughts are cloudier than they had been before.",
 							FG_GREY | BG_BLACK );
 						NEXTLINE;
 						currPos = drawString( currPos.X, currPos.Y, safeWriteArea,
@@ -6376,7 +6380,7 @@ void helpScene( void )
 
 		outPos = drawString( safeWriteArea.Left, outPos.Y + 2, safeWriteArea, "Choices", FG_WHITE );
 		outPos = drawString( safeWriteArea.Left + 1, outPos.Y + 1, safeWriteArea,
-			"When a choice has a skill name behind it in paranthesis that means that choice will require a skill check. If you "
+			"When a choice has a skill name behind it in parenthesis that means that choice will require a skill check. If you "
 			"roll too low you will not succeed at the task and you will take a penalty of some kind (e.g. gain a wound or lose an "
 			"item). If you roll high enough you succeed. If you roll somewhere in the middle you'll have a costly success. You will "
 			"still succeed at the task but take a penalty like you would with a failure.\n"
@@ -6408,8 +6412,8 @@ void helpScene( void )
 
 		outPos = drawString( safeWriteArea.Left, outPos.Y + 2, safeWriteArea, "Goal", FG_WHITE );
 		outPos = drawString( safeWriteArea.Left + 1, outPos.Y + 1, safeWriteArea,
-			"The final goal is to make your way into the ruins of a collapsed civiliation and bring back something that "
-			"would be deemd valuable by The Coalition. They are a group working to retrieve and rebuild what old technology "
+			"The final goal is to make your way into the ruins of a collapsed civilization and bring back something that "
+			"would be deemed valuable by The Coalition. They are a group working to retrieve and rebuild what old technology "
 			"they can.",
 			FG_GREY );
 
